@@ -1,0 +1,71 @@
+<?php
+
+return [
+    'home' => 'الرئيسية',
+    'welcome-to-dashboard' => 'أهلا بك يا :userName في نظام HR :systemName',
+    'welcome' => 'أهلا بعودتك',
+    'sign-in-to-continue' => 'سجل دخولك للمتابعة',
+    'login.keep' => 'ابقني قيد تسجيل الدخول',
+    'login' => 'تسجيل الدخول',
+    'forget-password' => 'نسيت كلمة المرور',
+    'job_requests' => 'طلبات العمل',
+
+    'add' => 'إضافة',
+    'id' => 'المعرف',
+    'status' => 'الحالة',
+    'action' => 'إجراء',
+    'title' => 'العنوان',
+    'return' => 'رجوع',
+    'description' => 'الوصف',
+    'create' => 'إنشاء',
+    'save' => 'حفظ',
+    'created_at' => 'تاريخ الإنشاء',
+    'select.choose-option' => '-- اختر خيارًا --',
+
+    'full_name' => 'الاسم الكامل',
+    'email' => 'البريد الإلكتروني',
+    'date-of-birth' => 'تاريخ الميلاد',
+    'phone-number' => 'رقم الهاتف',
+    'cv' => 'السيرة الذاتية',
+    'view-apply-form' => 'عرض استمارة التقديم',
+    'accepted' => 'مقبول',
+    'pending' => 'معلق',
+    'rejected' => 'مرفوض',
+
+    'users' => 'المستخدمون',
+    'user' => 'مستخدم',
+    'role' => 'الدور',
+    'you' => 'أنت',
+    'first_name' => 'الاسم الأول',
+    'last_name' => 'اسم العائلة',
+    'password' => 'كلمة المرور',
+    'date_of_birth' => 'تاريخ الميلاد',
+    'phone' => 'رقم الهاتف',
+    'user_created' => 'تم إنشاء المستخدم بنجاح',
+    'user_updated' => 'تم تحديث بيانات المستخدم',
+    'user_deleted' => 'تم حذف المستخدم',
+
+    'system-settings' => 'إعدادات النظام',
+    'system-name' => 'اسم النظام',
+    'avilable' => 'متاح',
+    'system_settings_saved' => 'تم حفظ الإعدادات بنجاح',
+
+    'job-form' => 'استمارة الوظيفة',
+    'job-applications' => 'طلبات الوظيفة',
+
+    'expected_salary' => 'الراتب المتوقع',
+    'position' => 'المسمى الوظيفي',
+    'phone_number' => 'رقم الهاتف',
+    'name' => 'الاسم',
+
+    'show' => 'عرض',
+    'accept' => 'قبول',
+    'reject' => 'رفض',
+    'delete' => 'حذف',
+
+    'accepted_jobs' => 'الوظائف المقبولة',
+    'pending_jobs' => 'الوظائف المعلقة',
+    'rejected_jobs' => 'الوظائف المرفوضة',
+
+    'print' => 'طباعة',
+];

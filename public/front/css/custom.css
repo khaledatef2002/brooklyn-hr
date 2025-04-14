@@ -1,0 +1,76 @@
+body
+{
+  font-family: "Cairo", sans-serif;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+div.iti:has(input.form-control)
+{
+  width: 100%;
+}
+
+.iti__search-input
+{
+  outline: none;
+  padding: 5px 10px;
+}
+
+#experienceContainer .experience-entry:not(:first-of-type), #educationContainer .education-entry:not(:first-of-type) {
+  border-top: 1px solid #e7e7e7;
+  margin-top: 25px;
+}
+
+button[type="submit"]
+{
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+}
+
+button[type="submit"] .loader {
+  display: none;
+}
+button[type="submit"]:disabled .loader {
+  display: block;
+}
+button[type="submit"]:disabled p {
+  display: none;
+}
+
+.loader {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite
+}
+.loader::before , .loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 3px solid #FFF;
+  animation: prixClipFix 2s linear infinite ;
+}
+.loader::after{
+  border-color: #FF3D00;
+  animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
+  inset: 6px;
+}
+
+@keyframes rotate {
+  0%   {transform: rotate(0deg)}
+  100%   {transform: rotate(360deg)}
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
