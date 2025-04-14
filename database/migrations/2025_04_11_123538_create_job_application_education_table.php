@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('job_application_education', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('job_application_id');
-            $table->foreign('job_application_id')->references('id')->on('jop_applications')->onDelete('cascade');
+            $table->foreign('job_application_id')->references('id')->on('job_applications')->onDelete('cascade');
             $table->string('name');
             $table->text('qualifications');
             $table->date('date_of_completion');
