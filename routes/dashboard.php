@@ -4,7 +4,7 @@ use App\Helpers\select2;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\JobApplicationsController;
 use App\Http\Controllers\Dashboard\NotificationsController;
-use App\Http\Controllers\dashboard\SystemSettingsController;
+use App\Http\Controllers\Dashboard\SystemSettingsController;
 use App\Http\Controllers\Dashboard\TaskMessagesController;
 use App\Http\Controllers\Dashboard\TasksController;
 use App\Http\Controllers\Dashboard\UserController;
