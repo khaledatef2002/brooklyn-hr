@@ -25,6 +25,21 @@
                     
                     {{-- Personal Info --}}
                     <div class="card mb-4 border-0 shadow-sm">
+                        <div class="card-header bg-white fw-bold">@lang('front.personal-image') <span class="text-muted">@lang('front.optional')</span></div>
+                        <div class="card-body row g-3">
+                            <div class="auto-image-show">
+                                <input capture="user" id="cover" capture="front" name="image" type="file" class="profile-img-file-input" accept="image/*" hidden>
+                                <label for="cover" role="button"  style="width: 200px;" class="d-flex flex-column align-items-cneter">
+                                    <div class="profile-photo-edit d-flex justify-content-center align-items-center" style="aspect-ratio: 1 / 1;overflow:hidden">
+                                        <img src="{{ asset('front/images/no-image.jpeg') }}" style="min-width:100%;min-height:100%;" alt="article-cover">
+                                    </div>
+                                    <p class="btn btn-success mt-2 mb-0" type="button">@lang('front.choose-image')</p>
+                                </label>
+                            </div> 
+                        </div>
+                    </div>
+                    {{-- Personal Info --}}
+                    <div class="card mb-4 border-0 shadow-sm">
                         <div class="card-header bg-white fw-bold">@lang('front.personal-information')</div>
                         <div class="card-body row g-3">
                             <div class="d-flex gap-2 flex-wrap">
@@ -34,17 +49,21 @@
                                 </div>
                                 <div class="flex-fill">
                                     <label class="form-label">@lang('front.date-of-birth')</label>
-                                    <input type="date" name="date_of_birth" class="form-control">
+                                    <input type="text" name="date_of_birth" class="form-control date_mask" placeholder="dd/mm/yyyy">
                                 </div>
                             </div>
                             <div class="d-flex gap-2 flex-wrap">
                                 <div class="flex-fill">
                                     <label class="form-label">@lang('front.phone-number')</label>
-                                    <input type="text" name="phone_number" class="form-control">
+                                    <input dir="ltr" type="text" name="phone_number" class="form-control" x-mask="01#########">
                                 </div>
                                 <div class="flex-fill">
                                     <label class="form-label">@lang('front.nationality')</label>
-                                    <input type="text" name="nationality" class="form-control">
+                                    <select name="nationality" class="form-select select2">
+                                        @foreach (App\Enum\NationalityValues::getList() as $value)
+                                            <option value="{{ $value }}">{{ __('front.' . $value) }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -75,7 +94,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label">@lang('front.date-of-certification')</label>
-                                    <input type="date" name="education[0][date_of_completion]" class="form-control">
+                                    <input type="text" name="education[0][date_of_completion]" class="form-control date_year_mask" placeholder="yyyy">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +127,7 @@
                                                 <td>
                                                     <select name="{{ $lang }}_{{ $skill }}" class="form-select select2">
                                                         @foreach ($levels as $level)
-                                                            <option value="{{ $level }}">{{ ucfirst($level) }}</option>
+                                                            <option value="{{ $level }}">{{ __('front.' . strtolower($level)) }}</option>
                                                         @endforeach
                                                     </select>
                                                 </td>
@@ -132,18 +151,17 @@
                             <p class="text-center mb-1 fw-bold">@lang('front.no-work-experience')</p>
                         </div>
                     </div>
-                      
-
-                    
+                                      
                     {{-- Other Info --}}
-                    <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card mb-4 border-0 shadow-sm"
+                        x-data="{health_certificate_date: null, health_certificate_date_value: '', health_problem: null, health_problem_value: '', starting_duration: null, starting_duration_value: ''}">
                         <div class="card-header bg-white fw-bold">@lang('front.other-details')</div>
                         <div class="card-body row g-3">
                             <div class="col-md-4">
                                 <label class="form-label">@lang('front.military-service')</label>
                                 <select name="military_service" class="form-select select2">
                                     @foreach (App\Enum\MilitaryServiceValues::getValues() as $value)
-                                        <option value="{{ $value }}">{{ ucfirst($value) }}</option>
+                                        <option value="{{ $value }}">{{ __('front.' . $value) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -151,7 +169,7 @@
                                 <label class="form-label">@lang('front.religion')</label>
                                 <select name="religion" class="form-select select2">
                                     @foreach (App\Enum\ReligionValues::getValues() as $value)
-                                        <option value="{{ $value }}">{{ ucfirst($value) }}</option>
+                                        <option value="{{ $value }}">{{ __('front.' . $value) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -159,7 +177,7 @@
                                 <label class="form-label">@lang('front.social-status')</label>
                                 <select name="social_status" class="form-select select2">
                                     @foreach (App\Enum\SocialStatus::getValues() as $value)
-                                        <option value="{{ $value }}">{{ ucfirst($value) }}</option>
+                                        <option value="{{ $value }}">{{ __('front.' . $value) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -173,39 +191,90 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">@lang('front.expected-salary')</label>
-                                <input type="number" name="expected_salary" step="0.01" class="form-control">
+                                <input type="text" name="expected_salary" step="0.01" class="form-control salary_mask">
                             </div>
 
                             {{-- Boolean Fields --}}
-                            @php
-                                $booleans = [
-                                    'do_you_have_health_certificate' => __('front.do-you-have-certification'),
-                                    'ready_to_start' => __('front.ready-to-start-immediately'),
-                                    'any_crime' => __('front.have-you-committed-any-crime'),
-                                    'work_in_any_place' => __('front.willing-to-work-in-any-place'),
-                                    'any_health_problems' => __('front.any-health-problems')
-                                ];
-                            @endphp
-
-                            @foreach ($booleans as $name => $label)
+                            <div class="col-12 d-flex">
                                 <div class="col-md-6">
-                                    <label class="form-label d-block">{{ $label }}</label>
+                                    <label class="form-label d-block">@lang('front.do-you-have-certification')</label>
                                     <div class="form-check form-check-inline">
-                                        <input id="{{ $name }}_yes" type="radio" name="{{ $name }}" value="1" class="form-check-input">
-                                        <label for="{{ $name }}_yes" class="form-check-label">@lang('front.yes')</label>
+                                        <input x-model="health_certificate_date" id="do_you_have_health_certificate_yes" type="radio" name="do_you_have_health_certificate" value="1" class="form-check-input">
+                                        <label for="do_you_have_health_certificate_yes" class="form-check-label">@lang('front.yes')</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input id="{{ $name }}_no" type="radio" name="{{ $name }}" value="0" class="form-check-input">
-                                        <label for="{{ $name }}_no" class="form-check-label">@lang('front.no')</label>
+                                        <input x-model="health_certificate_date" id="do_you_have_health_certificate_no" type="radio" name="do_you_have_health_certificate" value="0" class="form-check-input">
+                                        <label for="do_you_have_health_certificate_no" class="form-check-label">@lang('front.no')</label>
                                     </div>
                                 </div>
-                            @endforeach
+                                <div class="col-md-6" x-show="health_certificate_date == 1">
+                                    <label class="form-label" for="health_certificate_date">@lang('front.health-certificate-date')</label>
+                                    <input x-model="health_certificate_date_value" type="text" name="health_certificate_date" class="form-control date_mask" placeholder="dd/mm/yyyy">
+                                </div>
+                                <template x-effect="if (health_certificate_date == 0) health_certificate_date_value = ''"></template>
+                            </div>
+
+                            <div class="col-12 d-flex">
+                                <div class="col-md-6">
+                                    <label class="form-label d-block">@lang('front.ready-to-start-immediately')</label>
+                                    <div class="form-check form-check-inline">
+                                        <input x-model="starting_duration" id="ready_to_start_yes" type="radio" name="ready_to_start" value="1" class="form-check-input">
+                                        <label for="ready_to_start_yes" class="form-check-label">@lang('front.yes')</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input x-model="starting_duration" id="ready_to_start_no" type="radio" name="ready_to_start" value="0" class="form-check-input">
+                                        <label for="ready_to_start_no" class="form-check-label">@lang('front.no')</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" x-show="starting_duration == 0">
+                                    <label class="form-label d-block">@lang('front.starting-duration')</label>
+                                    <select x-model="starting_duration" id="starting_duration" name="starting_duration" class="form-select select2">
+                                            <option disabled selected>@lang('front.select-an-option')</option>
+                                        @foreach (App\Enum\StartingPeriodOptions::getValues() as $value)
+                                            <option value="{{ $value }}">{{ __('front.' . $value) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <template x-effect="if (starting_duration == 1) { starting_duration_value = '';$('select#starting_duration').val($('select#starting_duration option:first').val()).trigger('change');}"></template>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label d-block">@lang('front.willing-to-work-in-any-place')</label>
+                                <div class="form-check form-check-inline">
+                                    <input id="work_in_any_place_yes" type="radio" name="work_in_any_place" value="1" class="form-check-input">
+                                    <label for="work_in_any_place_yes" class="form-check-label">@lang('front.yes')</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="work_in_any_place_no" type="radio" name="work_in_any_place" value="0" class="form-check-input">
+                                    <label for="work_in_any_place_no" class="form-check-label">@lang('front.no')</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex">
+                                <div class="col-md-6">
+                                    <label class="form-label d-block">@lang('front.any-health-problems')</label>
+                                    <div class="form-check form-check-inline">
+                                        <input x-model="health_problem" id="any_health_problems_yes" type="radio" name="any_health_problems" value="1" class="form-check-input">
+                                        <label for="any_health_problems_yes" class="form-check-label">@lang('front.yes')</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input x-model="health_problem" id="any_health_problems_no" type="radio" name="any_health_problems" value="0" class="form-check-input">
+                                        <label for="any_health_problems_no" class="form-check-label">@lang('front.no')</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" x-show="health_problem == 1">
+                                    <label class="form-label" for="health_problem">@lang('front.health_problem')</label>
+                                    <input x-model="health_problem_value" type="text" name="health_problem" class="form-control">
+                                </div>
+                                <template x-effect="if (health_problem == 0) health_problem_value = '';"></template>
+                            </div>
+
                         </div>
                     </div>
 
                     {{-- Upload CV --}}
                     <div class="card mb-4 border-0 shadow-sm">
-                        <div class="card-header bg-white fw-bold">@lang('front.upload-cv')</div>
+                        <div class="card-header bg-white fw-bold">@lang('front.upload-cv') <span class="text-muted text-sm">@lang('front.optional')</span> <span class="text-muted text-sm">@lang('front.required-for-managers')</span></div>
                         <div class="card-body">
                             <input type="file" name="cv" class="form-control" />
                         </div>
@@ -217,7 +286,7 @@
                     </button>
                 </form>
             @else
-                <p class="text-danger fw-bold text-center">@lang('front.internship-applying-is-unavilable')</p>
+                <p class="text-danger fw-bold text-center">@lang('front.job-applying-is-unavilable')</p>
             @endif
         </div>
     </div>
@@ -229,6 +298,35 @@
 @endsection
 @section('custom-js')
     <script>
+        document.querySelectorAll('.date_mask').forEach(function (input) {
+            new Cleave(input, {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+        });
+
+        document.querySelectorAll('.date_year_mask').forEach(function (input) {
+            new Cleave(input, {
+                date: true,
+                delimiter: '/',
+                datePattern: ['Y']
+            });
+        });
+
+        document.querySelectorAll('.salary_mask').forEach(function (input) {
+            new Cleave(input, {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            });
+        });
+
+        const phone_number_mask = new Cleave('input[name="phone_number"]', {
+            prefix: '01',
+            delimiter: '',
+            blocks: [2, 9],
+        });
+
         $('.select2').select2({ width: '100%' });
 
         let educationIndex = 1;
@@ -240,15 +338,15 @@
             newEntry.innerHTML = `
             <div class="col-md-4">
                 <label class="form-label">@lang('front.name-of-school-college-university')</label>
-                <input type="text" name="education[${educationIndex}][name]" class="form-control" placeholder="Institute Name">
+                <input type="text" name="education[${educationIndex}][name]" class="form-control">
             </div>
             <div class="col-md-4">
                 <label class="form-label">@lang('front.quification-obtained')</label>
-                <input type="text" name="education[${educationIndex}][qualifications]" class="form-control" placeholder="Qualifications">
+                <input type="text" name="education[${educationIndex}][qualifications]" class="form-control">
             </div>
             <div class="col-md-3">
                 <label class="form-label">@lang('front.date-of-certification')</label>
-                <input type="date" name="education[${educationIndex}][date_of_completion]" class="form-control">
+                <input type="text" name="education[${educationIndex}][date_of_completion]" class="form-control date_year_mask" placeholder="yyyy">
             </div>
             <div class="col-md-1 d-flex align-items-end pb-1">
                 <button type="button" class="btn btn-danger btn-sm remove-education">&times;</button>
@@ -256,6 +354,20 @@
             `;
             container.appendChild(newEntry);
             educationIndex++;
+
+            const date_element = newEntry.querySelector('input.date_mask');
+            new Cleave(date_element, {
+                date: true,
+                delimiter: '/',
+                datePattern: ['d', 'm', 'Y']
+            });
+
+            const date_year_element = newEntry.querySelector('input.date_year_mask');
+            new Cleave(date_year_element, {
+                date: true,
+                delimiter: '/',
+                datePattern: ['Y']
+            });
         });
 
         document.addEventListener('click', function (e) {
@@ -276,27 +388,23 @@
             newEntry.innerHTML = `
             <div class="col-md-4">
                 <label for="work_experience_${experienceIndex}_company_name">@lang('front.company-name')</label>
-                <input id="work_experience_${experienceIndex}_company_name" type="text" name="work_experience[${experienceIndex}][company_name]" class="form-control" placeholder="Company Name">
+                <input id="work_experience_${experienceIndex}_company_name" type="text" name="work_experience[${experienceIndex}][company_name]" class="form-control">
             </div>
             <div class="col-md-4 mt-3">
-                <label for="work_experience_${experienceIndex}_joining_date">@lang('front.joining-date')</label>
-                <input id="work_experience_${experienceIndex}_joining_date" type="date" name="work_experience[${experienceIndex}][joining_date]" class="form-control">
+                <label for="work_experience_${experienceIndex}_jworking_duration">@lang('front.working_duration')</label>
+                <input id="work_experience_${experienceIndex}_working_duration" type="text" name="work_experience[${experienceIndex}][working_duration]" class="form-control">
             </div>
             <div class="col-md-4 mt-3">
                 <label for="work_experience_${experienceIndex}_monthly_salary">@lang('front.monthly-salary')</label>
-                <input id="work_experience_${experienceIndex}_monthly_salary" type="text" name="work_experience[${experienceIndex}][monthly_salary]" class="form-control" placeholder="Monthly Salary">
+                <input id="work_experience_${experienceIndex}_monthly_salary" type="text" name="work_experience[${experienceIndex}][monthly_salary]" class="form-control salary_mask">
             </div>
             <div class="col-md-4">
                 <label for="work_experience_${experienceIndex}_position">@lang('front.position')</label>
-                <input id="work_experience_${experienceIndex}_position" type="text" name="work_experience[${experienceIndex}][position]" class="form-control" placeholder="Position">
-            </div>
-            <div class="col-md-4">
-                <label for="work_experience_${experienceIndex}_job_type">@lang('front.job-type')</label>
-                <input id="work_experience_${experienceIndex}_job_type" type="text" name="work_experience[${experienceIndex}][job_type]" class="form-control" placeholder="Job Type">
+                <input id="work_experience_${experienceIndex}_position" type="text" name="work_experience[${experienceIndex}][position]" class="form-control">
             </div>
             <div class="col-md-3 mt-3">
                 <label for="work_experience_${experienceIndex}_reason_for_leaving">@lang('front.reason-for-leaving')</label>
-                <input id="work_experience_${experienceIndex}_reason_for_leaving" type="text" name="work_experience[${experienceIndex}][reason_for_leaving]" class="form-control" placeholder="Reason for Leaving">
+                <input id="work_experience_${experienceIndex}_reason_for_leaving" type="text" name="work_experience[${experienceIndex}][reason_for_leaving]" class="form-control">
             </div>
             <div class="col-md-1 mt-3 d-flex align-items-end pb-1">
                 <button type="button" class="btn btn-danger btn-sm remove-experience">&times;</button>
@@ -304,6 +412,12 @@
             `;
             container.appendChild(newEntry);
             experienceIndex++;
+
+            const salary_input = newEntry.querySelector('input.salary_mask');
+            new Cleave(salary_input, {
+                numeral: true,
+                numeralThousandsGroupStyle: 'thousand'
+            });
         });
 
         document.addEventListener('click', function (e) {
@@ -312,7 +426,7 @@
                 {
                     const container = document.getElementById('experienceContainer');
                     container.innerHTML = `
-                        <p class="text-center mb-1 fw-bold">لا يوجد خبرات</p>
+                        <p class="text-center mb-1 fw-bold">{{ __('front.no-work-experience') }}</p>
                     `;
                 }
                 else

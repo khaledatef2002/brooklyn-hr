@@ -16,10 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('job_application_id');
             $table->foreign('job_application_id')->references('id')->on('job_applications')->onDelete('cascade');
             $table->text('reason_for_leaving');
-            $table->string('job_type');
             $table->string('position');
             $table->string('monthly_salary');
-            $table->string('joining_date');
+            $table->string('working_duration');
             $table->string('company_name');
             $table->timestamps();
         });

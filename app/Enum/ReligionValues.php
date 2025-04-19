@@ -6,7 +6,6 @@ enum ReligionValues: string
 {
     case islam = "islam";
     case chris = "chris";
-    case juese = "juese";
 
     public static function getValues(): array
     {

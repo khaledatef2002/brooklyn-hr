@@ -153,40 +153,55 @@ return [
     */
 
     'attributes' => [
+        'image' => 'الصورة الشخصية',
+
         'name' => 'الاسم',
         'date_of_birth' => 'تاريخ الميلاد',
         'phone_number' => 'رقم الهاتف',
         'nationality' => 'الجنسية',
         'address' => 'العنوان',
+
+        'education' => 'التعليم',
+        'education.*.name' => 'اسماء المدارس والكليات والجامعات',
+        'education.*.qualifications' => 'المؤهلات العلمية',
+        'education.*.date_of_completion' => 'تاريخ الحصول على المؤهل',
+
+        'english_spoken' => 'مستوى تحدث اللغة الانجليزي',
+        'english_written' => 'مستوى كتابة اللغة الانجليزي',
+        'english_reading' => 'مستوى قراءة اللغة الانجليزي',
+        'english_comprehension' => 'مستوى فهم اللغة الانجليزي',
+        
+        'arabic_spoken' => 'مستوى تحدث اللغة العربية',
+        'arabic_written' => 'مستوى كتابة اللغة العربية',
+        'arabic_reading' => 'مستوى قراءة اللغة العربية',
+        'arabic_comprehension' => 'مستوى فهم اللغة العربية',
+
+        'work_experience' => 'الخبرات العملية',
+        'work_experience.*.company_name' => 'اسم الشركة',
+        'work_experience.*.position' => 'المسمى الوظيفي',
+        'work_experience.*.monthly_salary' => 'الراتب الشهري',
+        'work_experience.*.working_duration' => 'مدة العمل داخل الشركة',
+        'work_experience.*.reason_for_leaving' => 'سبب ترك العمل',
+
         'military_service' => 'الخدمة العسكرية',
         'religion' => 'الديانة',
         'social_status' => 'الحالة الاجتماعية',
         'no_of_childs' => 'عدد الأطفال',
         'position' => 'المسمى الوظيفي',
         'expected_salary' => 'الراتب المتوقع',
+
         'do_you_have_health_certificate' => 'هل لديك شهادة صحية؟',
+        'health_certificate_date' => 'تاريخ الشهادة الصحية',
+        
         'ready_to_start' => 'هل أنت مستعد للبدء؟',
-        'any_crime' => 'هل لديك أي سجل جنائي؟',
+        'starting_duration' => 'مدة البدء',
+
         'work_in_any_place' => 'هل توفق على العمل في أي مكان؟',
+        
         'any_health_problems' => 'هل لديك أي مشاكل صحية؟',
+        'health_problem' => 'المشكلة الصحية',
+        
         'cv' => 'السيرة الذاتية',
-        'english_spoken' => 'مستوى تحدث اللغة الانجليزي',
-        'english_written' => 'مستوى كتابة اللغة الانجليزي',
-        'english_reading' => 'مستوى قراءة اللغة الانجليزي',
-        'english_comprehension' => 'مستوى فهم اللغة الانجليزي',
-        'arabic_spoken' => 'مستوى تحدث اللغة العربية',
-        'arabic_written' => 'مستوى كتابة اللغة العربية',
-        'arabic_reading' => 'مستوى قراءة اللغة العربية',
-        'arabic_comprehension' => 'مستوى فهم اللغة العربية',
-        'education.*.name' => 'اسماء المدارس والكليات والجامعات',
-        'education.*.qualifications' => 'المؤهلات العلمية',
-        'education.*.date_of_completion' => 'تاريخ الحصول على المؤهل',
-        'work_experience.*.company_name' => 'اسم الشركة',
-        'work_experience.*.joining_date' => 'تاريخ الانضمام',
-        'work_experience.*.monthly_salary' => 'الراتب الشهري',
-        'work_experience.*.position' => 'المسمى الوظيفي',
-        'work_experience.*.job_type' => 'نوع الوظيفة',
-        'work_experience.*.reason_for_leaving' => 'سبب ترك العمل',
     ],
 
 ];

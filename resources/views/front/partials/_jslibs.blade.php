@@ -10,7 +10,10 @@
 <script src="{{ asset('front/libs/jquery/jquery-3.6.4.min.js') }}"></script>
 
 <script src="{{ asset('front/libs/intl-tel-input/js/intlTelInput.min.js') }}"></script>
-
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.min.js
+"></script>
 @yield('additional-js-libs')
 
 <!-- App js -->

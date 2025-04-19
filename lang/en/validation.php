@@ -192,40 +192,55 @@ return [
     */
 
     'attributes' => [
+        'image' => 'Personal Image',
+
         'name' => 'Full Name',
         'date_of_birth' => 'Date of birth',
         'phone_number' => 'Phone number',
         'nationality' => 'Nationality',
         'address' => 'Address',
+
+        'education' => 'Education',
+        'education.*.name' => 'School/College/University Name',
+        'education.*.qualifications' => 'Qualifications',
+        'education.*.date_of_completion' => 'Date of completion',
+
+        'english_spoken' => 'English speaking level',
+        'english_written' => 'English writing level',
+        'english_reading' => 'English reading level',
+        'english_comprehension' => 'English comprehension level',
+        
+        'arabic_spoken' => 'Arabic speaking level',
+        'arabic_written' => 'Arabic writing level',
+        'arabic_reading' => 'Arabic reading level',
+        'arabic_comprehension' => 'Arabic comprehension level',
+
+        'work_experince' => 'Working Experience',
+        'work_experience.*.company_name' => 'Company Name',
+        'work_experience.*.position' => 'Position',
+        'work_experience.*.monthly_salary' => 'Monthly Salary',
+        'work_experience.*.working_duration' => 'Working Duration',
+        'work_experience.*.reason_for_leaving' => 'Reason for Leaving',
+
         'military_service' => 'Military service',
         'religion' => 'Religion',
         'social_status' => 'Social status',
         'no_of_childs' => 'Number of children',
         'position' => 'Position',
         'expected_salary' => 'Expected salary',
+
         'do_you_have_health_certificate' => 'Do you have a health certificate?',
+        'health_certificate_date' => 'Health Certificate Date',
+        
         'ready_to_start' => 'Are you ready to start?',
-        'any_crime' => 'Do you have any criminal record?',
+        'starting_duration' => 'Starting Duration',
+        
         'work_in_any_place' => 'Are you willing to work in any place?',
+        
         'any_health_problems' => 'Do you have any health problems?',
+        'health_problem' => 'Health Problem',
+
         'cv' => 'CV',
-        'english_spoken' => 'English speaking level',
-        'english_written' => 'English writing level',
-        'english_reading' => 'English reading level',
-        'english_comprehension' => 'English comprehension level',
-        'arabic_spoken' => 'Arabic speaking level',
-        'arabic_written' => 'Arabic writing level',
-        'arabic_reading' => 'Arabic reading level',
-        'arabic_comprehension' => 'Arabic comprehension level',
-        'education.*.name' => 'School/College/University Name',
-        'education.*.qualifications' => 'Qualifications',
-        'education.*.date_of_completion' => 'Date of completion',
-        'work_experience.*.company_name' => 'Company Name',
-        'work_experience.*.joining_date' => 'Joining Date',
-        'work_experience.*.monthly_salary' => 'Monthly Salary',
-        'work_experience.*.position' => 'Position',
-        'work_experience.*.job_type' => 'Job Type',
-        'work_experience.*.reason_for_leaving' => 'Reason for Leaving',
     ],
 
 ];

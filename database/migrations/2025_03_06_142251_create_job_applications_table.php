@@ -4,8 +4,10 @@ use App\Enum\InternshipRequestStatus;
 use App\Enum\JobApplicationStatus;
 use App\Enum\LanguageRate;
 use App\Enum\MilitaryServiceValues;
+use App\Enum\NationalityValues;
 use App\Enum\ReligionValues;
 use App\Enum\SocialStatus;
+use App\Enum\StartingPeriodOptions;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,18 +27,21 @@ return new class extends Migration
             $table->string('phone_number');
             $table->enum('military_service', [MilitaryServiceValues::COMPLETED->value, MilitaryServiceValues::permenant->value, MilitaryServiceValues::postponed->value]);
             $table->date('date_of_birth');
-            $table->string('nationality');
-            $table->enum('religion', [ReligionValues::islam->value, ReligionValues::chris->value, ReligionValues::juese->value]);
+            $table->enum('nationality', [NationalityValues::EGYPTION->value, NationalityValues::OTHER->value]);
+            $table->enum('religion', [ReligionValues::islam->value, ReligionValues::chris->value]);
             $table->enum('social_status', [SocialStatus::SINGLE->value, SocialStatus::MARRIED->value, SocialStatus::WINDOWED->value, SocialStatus::DIVORCED->value]);
-            $table->smallInteger('no_of_childs');
+            $table->smallInteger('no_of_childs')->nullable();
             $table->string('position');
             $table->boolean('ready_to_start');
-            $table->boolean('any_crime');
             $table->float('expected_salary');
             $table->boolean('work_in_any_place');
             $table->boolean('any_health_problems');
 
-            $table->string('cv');
+            $table->date('health_certificate_date')->nullable();
+            $table->string('health_problem')->nullable();
+            $table->enum('starting_duration', StartingPeriodOptions::getValues())->nullable();
+
+            $table->string('cv')->nullable();
             $table->enum('status', [JobApplicationStatus::ACCEPTED->value, JobApplicationStatus::PENDING->value, JobApplicationStatus::REJECTED->value])->default(JobApplicationStatus::PENDING->value);
             
             $table->enum('english_spoken', LanguageRate::getList());
@@ -48,6 +53,8 @@ return new class extends Migration
             $table->enum('arabic_written', LanguageRate::getList());
             $table->enum('arabic_reading', LanguageRate::getList());
             $table->enum('arabic_comprehension', LanguageRate::getList());
+
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('job_application_id')->references('id')->on('job_applications')->onDelete('cascade');
             $table->string('name');
             $table->text('qualifications');
-            $table->date('date_of_completion');
+            $table->smallInteger('date_of_completion')->nullable();
             $table->timestamps();
         });
     }

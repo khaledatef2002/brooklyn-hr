@@ -38,9 +38,32 @@ const enable_job_application_form = function()
     })
 }
 
+const allow_image_input_file_display = function()
+{
+    document.querySelectorAll(".auto-image-show").forEach(e => {
+        const fileInput = e.querySelector("input[type='file']");
+        const preview = e.querySelector("img")
+    
+        fileInput.addEventListener('change', function() {
+          const file = this.files[0];
+          if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          } else {
+          }
+        });
+    })
+}
+
+
 function init()
 {
     enable_job_application_form()
+
+    allow_image_input_file_display()
 }
 
 init()

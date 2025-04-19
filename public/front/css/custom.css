@@ -74,3 +74,15 @@ button[type="submit"]:disabled p {
     75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
     100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
 }
+
+.select2-container .select2-selection--single
+{
+  height: 38px;
+  display: flex;
+  align-items: center;
+  border-color: #dee2e6;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 38px;
+}
+
