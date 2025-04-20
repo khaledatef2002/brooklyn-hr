@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __('dashboard.user.edit'))
+@section('title', __('dashboard.job-application.show') . $job_application->name . " " . $job_application->created_at->format("Y-m-d"))
 
 @section('content')
 
@@ -18,6 +18,14 @@
 @csrf
 <div class="row">
     <div class="col-lg-12">
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-header bg-white fw-bold">@lang('front.personal-image')</div>
+            <div class="card-body row g-3">
+                <div class='rounded-4 overflow-hidden d-flex justify-content-center align-items-cneter' style='width: 150px; height: 150px;'>
+                    <img src="{{ $job_application->image ? asset('storage/' . $job_application->image) : asset('back/images/users/default-avatar-icon-of-social-media-user-vector.jpg') }}" style='min-width: 100%; min-height:100%'>  
+                </div>
+            </div>
+        </div>
         {{-- Personal Info --}}
         <div class="card mb-4 border-0 shadow-sm">
             <div class="card-header bg-white fw-bold">@lang('front.personal-information')</div>
@@ -121,10 +129,9 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>@lang('front.company-name')</th>
-                                <th>@lang('front.joining-date')</th>
+                                <th>@lang('front.working-duration')</th>
                                 <th>@lang('front.monthly-salary')</th>
                                 <th>@lang('front.position')</th>
-                                <th>@lang('front.job-type')</th>
                                 <th>@lang('front.reason-for-leaving')</th>
                             </tr>
                         </thead>
@@ -132,10 +139,9 @@
                             @foreach ($job_application->experiences as $experience)
                                 <tr>
                                     <td>{{ $experience->company_name }}</td>
-                                    <td>{{ $experience->joining_date }}</td>
+                                    <td>{{ $experience->working_duration }}</td>
                                     <td>{{ $experience->monthly_salary }}</td>
                                     <td>{{ $experience->position }}</td>
-                                    <td>{{ $experience->job_type }}</td>
                                     <td>{{ $experience->reason_for_leaving }}</td>
                                 </tr>
                             @endforeach
@@ -165,7 +171,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">@lang('front.number-of-children')</label>
-                    <span class="d-block">{{ $job_application->no_of_children }}</span>
+                    <span class="d-block">{{ $job_application->no_of_children | 0 }}</span>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">@lang('front.position-applied-for')</label>
@@ -178,25 +184,45 @@
 
 
 
-                <div class="col-md-4">
-                    <label class="form-label">@lang('front.do-you-have-certification')</label>
-                    <span class="d-block">{{ $job_application->do_you_have_health_certificate ? __('front.yes') : __('front.no') }}</span>
+                <div class="d-flex flex-wrap col-12">
+                    <div class="col-md-6">
+                        <label class="form-label">@lang('front.do-you-have-certification')</label>
+                        <span class="d-block">{{ $job_application->do_you_have_health_certificate ? __('front.yes') : __('front.no') }}</span>
+                    </div>
+                    @if ($job_application->health_certificate_date)
+                        <div class="col-md-6">
+                            <label class="form-label">@lang('front.health-certificate-date')</label>
+                            <span class="d-block">{{ $job_application->health_certificate_date }}</span>
+                        </div>
+                    @endif
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label">@lang('front.ready-to-start-immediately')</label>
-                    <span class="d-block">{{ $job_application->ready_to_start ? __('front.yes') : __('front.no') }}</span>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label">@lang('front.have-you-committed-any-crime')</label>
-                    <span class="d-block">{{ $job_application->any_crime ? __('front.yes') : __('front.no') }}</span>
+                <div class="d-flex flex-wrap col-12">
+                    <div class="col-md-6">
+                        <label class="form-label">@lang('front.ready-to-start-immediately')</label>
+                        <span class="d-block">{{ $job_application->ready_to_start ? __('front.yes') : __('front.no') }}</span>
+                    </div>
+                    @if ($job_application->starting_duration)
+                        <div class="col-md-6">
+                            <label class="form-label">@lang('front.starting-duration')</label>
+                            <span class="d-block">{{ $job_application->starting_duration }}</span>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">@lang('front.willing-to-work-in-any-place')</label>
                     <span class="d-block">{{ $job_application->work_in_any_place ? __('front.yes') : __('front.no') }}</span>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label">@lang('front.any-health-problems')</label>
-                    <span class="d-block">{{ $job_application->any_health_problems ? __('front.yes') : __('front.no') }}</span>
+                <div class="d-flex flex-wrap col-12">
+                    <div class="col-md-6">
+                        <label class="form-label">@lang('front.any-health-problems')</label>
+                        <span class="d-block">{{ $job_application->any_health_problems ? __('front.yes') : __('front.no') }}</span>
+                    </div>
+                    @if ($job_application->health_problem)
+                        <div class="col-md-6">
+                            <label class="form-label">@lang('front.health_problem')</label>
+                            <span class="d-block">{{ $job_application->health_problem }}</span>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

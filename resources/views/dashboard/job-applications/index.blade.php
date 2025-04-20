@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.app')
 
-@section('title', __('dashboard.users'))
+@section('title', __('dashboard.job-applications'))
 
 @section('content')
 
@@ -16,8 +16,8 @@
     </div>
 </div>
 <div class="card">
-    <div class="card-body table-responsive">
-        <table class="table table-bordered table-striped" id="dataTables">
+    <div class="card-body table-responsive pb-5">
+        <table class="table table-bordered table-striped pb-5" id="dataTables">
             <thead>
                 <tr class="table-dark">
                     <th>@lang('dashboard.name')</th>
