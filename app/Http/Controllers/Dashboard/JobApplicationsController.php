@@ -172,7 +172,9 @@ class JobApplicationsController extends Controller implements HasMiddleware
 
     public function print(JobApplication $job_application)
     {
-        $response = Http::get(ENV('API_HOST') . '/api/job-application/print', [
+        $response = Http::withOptions([
+            'verify' => false, // disables SSL certificate verification
+        ])->get(ENV('API_HOST') . '/api/job-application/print', [
             'job_application' => $job_application->toArray(),
             'settings' => app('settings')->toArray(),
             'asset_path' => asset("")
