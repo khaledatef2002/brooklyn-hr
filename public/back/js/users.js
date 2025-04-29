@@ -27,7 +27,7 @@ if(document.querySelector("input.country-selector"))
     });
 }
 
-document.querySelector("form#create-user-form button#create")?.addEventListener("click", async function(e) {
+document.querySelector("form#create-user-form button#create")?.addEventListener("click", async (e) => {
     create_account(e)
 })
 
