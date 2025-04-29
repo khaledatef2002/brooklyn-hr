@@ -56,7 +56,7 @@ class JobApplicationsController extends Controller implements HasMiddleware
                         </a>
                     </li>    
                     <li>
-                        <a class='dropdown-item' role='button' href='". route('dashboard.job-applications.print', $job_application->id) ."'>
+                        <a class='dropdown-item' role='button' href='". route('dashboard.job-applications.print', $job_application->id) ."' target='_blank'>
                             <i class='ri-printer-line align-bottom me-2 text-muted'></i>
                             ". __('dashboard.print') ."
                         </a>
