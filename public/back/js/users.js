@@ -40,7 +40,7 @@ async function create_account(e) {
     formData.set("phone_number", iti.getNumber())
     formData.set("country_code", iti.getSelectedCountryData().iso2.toUpperCase())
 
-    const submit_button = document.querySelector("button[type='submit']")
+    const submit_button = document.querySelector("button#create")
     submit_button.disabled = true
 
     const response = await request("/dashboard/users", "POST", formData)
