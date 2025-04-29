@@ -40,6 +40,9 @@ async function create_account(e) {
     formData.set("phone_number", iti.getNumber())
     formData.set("country_code", iti.getSelectedCountryData().iso2.toUpperCase())
 
+    const submit_button = this.querySelector("button[type='submit']")
+    submit_button.disabled = true
+
     const response = await request("/dashboard/users", "POST", formData)
 
     if(response.success) {
@@ -58,6 +61,8 @@ async function create_account(e) {
             icon: "error"
         });
     }
+
+    submit_button.disabled = false
 }
 
 document.querySelector("body").addEventListener("click", function(e) {
