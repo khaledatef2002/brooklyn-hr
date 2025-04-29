@@ -55,7 +55,19 @@ const allow_image_input_file_display = function()
           } else {
           }
         });
+
+        e.querySelector('.choose_gallery').addEventListener('click', function() {
+            e.querySelector("input[type='file']").setAttribute('capture', 'environment')
+            e.querySelector("input[type='file']").click()
+        })
+
+        e.querySelector('.choose_camera').addEventListener('click', function() {
+            e.querySelector("input[type='file']").setAttribute('capture', 'user')
+            e.querySelector("input[type='file']").click()
+        })
     })
+
+
 }
 
 

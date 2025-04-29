@@ -50,11 +50,16 @@
                         <span class="d-block">{{ $job_application->nationality }}
                     </div>
                 </div>
-                <div class="col-12">
-                    <label class="form-label">@lang('front.address')</label>
-                    <span class="d-block">{{ $job_application->address }}</span>
+                <div class="d-flex gap-2 flex-wrap">
+                    <div class="flex-fill">
+                        <label class="form-label">@lang('front.city')</label>
+                        <span class="d-block">{{ $job_application->city }}</span>
+                    </div>
+                    <div class="flex-fill">
+                        <label class="form-label">@lang('front.address')</label>
+                        <span class="d-block">{{ $job_application->address }}</span>
+                    </div>
                 </div>
-                
             </div>
         </div>
 

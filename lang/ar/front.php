@@ -75,6 +75,18 @@ return [
 
     'job-applying-is-unavilable' => 'التقديم على الوظائف غير متاح الان',
     'personal-image' => 'الصورة الشخصية',
-    'choose-image' => 'اختر صورة',
+    'choose-gallery' => 'اختر صورة من الملفات',
+    'choose-camera' => 'اختر باستخدام الكاميرا',
     'job_application_sent' => 'تم ارسال نموذج التوظيف الخاص بك بنجاح',
+
+    'cairo' => 'القاهرة',
+    'giza' => 'الجيزة',
+    'alex' => 'الاسكندرية',
+    'algharbia' => 'الغربية',
+    'almonifia' => 'المنيفية',
+    'kafrelsheikh' => 'الكفر الشيخ',
+    'albehira' => 'البحيرة',
+    'aldakhalia' => 'الدقهلية',
+
+    'city' => 'المدينة',
 ];

@@ -12,6 +12,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -93,6 +95,9 @@ class JobApplicationsController extends Controller implements HasMiddleware
                 </div>
                 ";
             })
+            ->editColumn('city', function(JobApplication $job_application){
+                return __('front.' . $job_application->city);
+            })
             ->editColumn('cv', function(JobApplication $job_application){
                 return $job_application->cv ? "<a href='". asset('storage/' . $job_application->cv) ."' target='_blank'> <i class='ri-file-transfer-line fs-3'></i> </a>" : "";
             })
@@ -167,16 +172,13 @@ class JobApplicationsController extends Controller implements HasMiddleware
 
     public function print(JobApplication $job_application)
     {
-        // return view('dashboard.templates.application', compact('job_application'));
+        $response = Http::get(ENV('API_HOST') . '/api/job-application/print', [
+            'job_application' => $job_application->toArray(),
+            'settings' => app('settings')->toArray(),
+            'asset_path' => asset("")
+        ]);
 
-        return Pdf::view('dashboard.templates.application', compact('job_application'))
-                    // ->withBrowsershot(function(Browsershot $browsershot){
-                    //     $browsershot->setNodeBinary('/opt/nodejs/bin/node')
-                    //     ->setNpmBinary('/opt/nodejs/bin/npm')
-                    //     ->noSandbox();
-                    // })
-                    ->format(Format::A4)
-                    ->name($job_application->name . ".pdf")
-                    ->download();
+        return response($response->body())
+        ->header('Content-Type', 'application/pdf');
     }
 }

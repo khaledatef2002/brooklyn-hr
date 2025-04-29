@@ -21,6 +21,7 @@
             <thead>
                 <tr class="table-dark">
                     <th>@lang('dashboard.name')</th>
+                    <th>@lang('front.city')</th>
                     <th>@lang('dashboard.phone_number')</th>
                     <th>@lang('dashboard.position')</th>
                     <th>@lang('dashboard.expected_salary')</th>
@@ -48,6 +49,7 @@
                 ajax: "{{ route('dashboard.job-applications.index') }}",
                 columns: [
                             { data: 'name', name: 'name' },
+                            { data: 'city', name: 'city' },
                             { data: 'phone_number', name: 'phone_number' },
                             { data: 'position', name: 'position' },
                             { data: 'expected_salary', name: 'expected_salary' },

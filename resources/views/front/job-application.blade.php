@@ -28,13 +28,14 @@
                         <div class="card-header bg-white fw-bold">@lang('front.personal-image') <span class="text-muted">@lang('front.optional')</span></div>
                         <div class="card-body row g-3">
                             <div class="auto-image-show">
-                                <input capture="user" id="cover" capture="front" name="image" type="file" class="profile-img-file-input" accept="image/*" hidden>
-                                <label for="cover" role="button"  style="width: 200px;" class="d-flex flex-column align-items-cneter">
+                                <input capture="user" id="cover" name="image" type="file" class="profile-img-file-input" accept="image/*" hidden>
+                                <div role="button" style="width: 200px;" class="d-flex flex-column align-items-cneter">
                                     <div class="profile-photo-edit d-flex justify-content-center align-items-center" style="aspect-ratio: 1 / 1;overflow:hidden">
                                         <img src="{{ asset('front/images/no-image.jpeg') }}" style="min-width:100%;min-height:100%;" alt="article-cover">
                                     </div>
-                                    <p class="btn btn-success mt-2 mb-0" type="button">@lang('front.choose-image')</p>
-                                </label>
+                                    <p class="btn btn-success mt-2 mb-0 choose_gallery" type="button">@lang('front.choose-gallery')</p>
+                                    <p class="btn btn-primary mt-2 mb-0 choose_camera" type="button">@lang('front.choose-camera')</p>
+                                </div>
                             </div> 
                         </div>
                     </div>
@@ -65,6 +66,14 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">@lang('front.city')</label>
+                                <select name="city" class="form-select select2">
+                                    @foreach (App\Enum\CityValues::getArray() as $value)
+                                        <option value="{{ $value }}">{{ __('front.' . $value) }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">@lang('front.address')</label>

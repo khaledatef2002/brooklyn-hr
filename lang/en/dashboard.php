@@ -68,4 +68,13 @@ return [
     'rejected_jobs' => 'Rejected Jobs',
 
     'print' => 'Print',
+
+    'cairo' => 'Cairo',
+    'giza' => 'Giza',
+    'alex' => 'Alex',
+    'algharbia' => 'Algharbia',
+    'almonifia' => 'Almonifia',
+    'kafrelsheikh' => 'Kafrelsheikh',
+    'albehira' => 'Albehira',
+    'aldakhalia' => 'Aldakhalia',
 ];

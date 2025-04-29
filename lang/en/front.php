@@ -75,6 +75,11 @@ return [
 
     'job-applying-is-unavilable' => 'Applying for jobs is currently unavailable!',
     'personal-image' => 'Personal Image',
-    'choose-image' => 'Choose Image',
+
+    'choose-gallery' => 'Choose image from gallery',
+    'choose-camera' => 'Choose image from camera',
+
     'job_application_sent' => 'Your job application has been sent successfully',
+
+    'city' => 'City',
 ];
