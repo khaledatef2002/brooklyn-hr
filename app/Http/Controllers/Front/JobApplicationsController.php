@@ -105,6 +105,11 @@ class JobApplicationsController extends Controller
 
         $data['expected_salary'] = str_replace(',', '', $data['expected_salary']);
         $data['date_of_birth'] = Carbon::createFromFormat("d/m/Y", $data['date_of_birth'])->format("Y-m-d");
+        
+        if($request->do_you_have_health_certificate)
+        {
+            $data['health_certificate_date'] = Carbon::createFromFormat("d/m/Y", $data['health_certificate_date'])->format("Y-m-d");
+        }
 
         if($request->hasFile('cv'))
         {
