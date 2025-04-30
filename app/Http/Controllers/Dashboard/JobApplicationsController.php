@@ -9,6 +9,7 @@ use App\Mail\SendNewAccountInfoMail;
 use App\Models\InternshipRequest;
 use App\Models\JobApplication;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
@@ -174,7 +175,7 @@ class JobApplicationsController extends Controller implements HasMiddleware
     {
         $job_application->load(['educations', 'workExperiences']);
         
-        $job_application->created_at = $job_application->created_at->format('Y/m/d');
+        $job_application->created_at_formatted = Carbon::parse($job_application->created_at)->format('Y/m/d');
 
         $response = Http::withOptions([
             'verify' => false, // disables SSL certificate verification
