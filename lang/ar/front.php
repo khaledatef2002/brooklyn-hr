@@ -83,8 +83,8 @@ return [
     'giza' => 'الجيزة',
     'alex' => 'الاسكندرية',
     'algharbia' => 'الغربية',
-    'almonifia' => 'المنيفية',
-    'kafrelsheikh' => 'الكفر الشيخ',
+    'almonifia' => 'المنوفية',
+    'kar_elsheikh' => 'كفر الشيخ',
     'albehira' => 'البحيرة',
     'aldakhalia' => 'الدقهلية',
 
